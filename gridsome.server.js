@@ -10,7 +10,7 @@ const axios = require('axios')
 module.exports = function (api) {
 
     api.loadSource(async actions => {
-      const { data } = await axios.get(`${process.env.GRIDSOME_STRAPI_URL}/learning-platforms/`)
+      const { data } = await axios.get(`https://aqueous-bastion-06425.herokuapp.com/learning-platforms/`)
 
       const collection = actions.addCollection({
         typeName: 'Course',
