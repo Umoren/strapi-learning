@@ -35,7 +35,6 @@ query ($id: ID!){
         }
         course_video{
             url
-            previewUrl
             mime
         }
     }

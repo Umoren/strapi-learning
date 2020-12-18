@@ -23,7 +23,7 @@
                     @click="$router.push(`/course/${course.node.id}`)"
                     class="btn"
                 >
-                    View Course
+                    View Course Preview
                 </button>
             </div>
         </div>
