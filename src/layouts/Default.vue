@@ -4,6 +4,7 @@
             <Navbar />
         </header>
 
+        <p style="color: #fff"> Auth Status: <span>{{authStatus}}</span> </p>
         <slot />
     </div>
 </template>
@@ -22,6 +23,11 @@ export default {
     components: {
         Navbar,
     },
+    computed: {
+        authStatus(){
+            return this.$store.getters.authStatus
+        }
+    }
 };
 </script>
 <style>
@@ -32,6 +38,10 @@ body {
     padding: 0;
     background: #753ff6;
     line-height: 1.5;
+}
+
+span{
+    text-transform: uppercase;
 }
 
 .layout {

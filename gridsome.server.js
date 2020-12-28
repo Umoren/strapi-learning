@@ -10,7 +10,7 @@ const axios = require('axios')
 module.exports = function (api) {
 
     api.loadSource(async actions => {
-      const { data } = await axios.get(`https://aqueous-bastion-06425.herokuapp.com/learning-platforms/`)
+      const { data } = await axios.get(`${process.env.STRAPI_URL}/learning-platforms/`)
 
       const collection = actions.addCollection({
         typeName: 'Course',
@@ -29,6 +29,13 @@ module.exports = function (api) {
           course_video: course.course_video
         })
       }
+    })
+
+    api.createPages(({createPage}) => {
+      createPage({
+        path: '/connect/github/redirect',
+        component: './src/components/LoginRedirect.vue'
+      })
     })
 
 }

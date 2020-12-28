@@ -10,25 +10,22 @@
                     Javascript, fully customizable and developer-first.
                 </p>
 
-                <p>Enjoy our courses here</p>
+                <p> <g-link to="/login"> Login </g-link> to enjoy all our courses here</p>
+
             </div>
         </section>
 
-        <section>
-            <AllCourses />
-        </section>
+
     </Layout>
 </template>
 
 <script>
-import AllCourses from '~/components/AllCourses';
+
 export default {
     metaInfo: {
         title: 'Learning Platform',
     },
-    components: {
-        AllCourses,
-    },
+
 };
 </script>
 

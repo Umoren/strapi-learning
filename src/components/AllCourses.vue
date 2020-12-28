@@ -18,12 +18,12 @@
             <div class="course-content">
                 <h3>{{ course.node.title }}</h3>
                 <p>{{ course.node.description }}</p>
-                <p class="price">Buy for ${{ course.node.price }}</p>
+                <!-- <p class="price">Buy for ${{ course.node.price }}</p> -->
                 <button
                     @click="$router.push(`/course/${course.node.id}`)"
                     class="btn"
                 >
-                    View Course Preview
+                    Start Course
                 </button>
             </div>
         </div>
