@@ -56,10 +56,17 @@ span{
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    height: 80px;
+
 }
 
 .nav__link {
     margin-left: 20px;
+}
+
+@media (max-width: 700px){
+    nav{
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
 }
 </style>

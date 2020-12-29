@@ -68,4 +68,15 @@ h1 {
 .video-width {
     width: 100%;
 }
+
+@media (max-width: 700px){
+    .long{
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+    .image {
+        width: 100%;
+        height: 100%;
+    }
+}
 </style>

@@ -171,5 +171,10 @@ button:hover {
   background: #753ff6;
 }
 
+@media (max-width: 700px){
+  .signup{
+    padding: .4rem;
+  }
+}
 </style>
 

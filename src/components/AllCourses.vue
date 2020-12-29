@@ -123,4 +123,19 @@ export default {
 .price {
     font-weight: 700;
 }
+
+@media (max-width: 700px) {
+    .course_list{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .course-content{
+        margin: 0;
+    }
+
+    img{
+        width: 100%;
+    }
+}
 </style>

@@ -8,7 +8,7 @@
                 </h1>
             </div>
             <ul>
-                <div v-if="isLoggedIn" class="ul">
+                <div v-if="disableNav" class="ul">
                     <li>
                         Welcome, {{user.username}}
                     </li>
@@ -45,7 +45,13 @@ export default {
             return this.$store.getters.isLoggedIn
         },
 
-
+        disableNav(){
+            if(this.$store.getters.authStatus === 'success'){
+                return true
+            } else if (this.$store.getters.authStatus === 'error'){
+                return false
+            }
+        }
     },
 
     mounted(){
@@ -86,6 +92,8 @@ nav {
 
 ul {
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 
 }
 
@@ -125,5 +133,11 @@ li {
 .nav-link {
     color: #fff;
     text-decoration: none;
+}
+
+@media(max-width: 700px){
+    ul{
+        justify-content: space-between;
+    }
 }
 </style>
