@@ -2,7 +2,7 @@
     <Layout>
         <!-- Learn how to use images here: https://gridsome.org/docs/images -->
         <section class="hero-section">
-            <div>
+            <div v-if="!isLoggedIn">
                 <h1>Welcome!</h1>
 
                 <p>
@@ -13,6 +13,13 @@
                 <p> <g-link to="/login"> Login </g-link> to enjoy all our courses here</p>
 
             </div>
+
+            <div v-else>
+                <h2> You're logged in </h2>
+
+                <p> Continue viewing your  <g-link to="/home"> courses </g-link>  </p>
+            </div>
+
         </section>
 
 
@@ -25,6 +32,11 @@ export default {
     metaInfo: {
         title: 'Learning Platform',
     },
+    computed:{
+        isLoggedIn(){
+            return this.$store.getters.isLoggedIn
+        },
+    }
 
 };
 </script>
