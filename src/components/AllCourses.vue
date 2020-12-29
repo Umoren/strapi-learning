@@ -19,12 +19,20 @@
                 <h3>{{ course.node.title }}</h3>
                 <p>{{ course.node.description }}</p>
                 <!-- <p class="price">Buy for ${{ course.node.price }}</p> -->
-                <button
-                    @click="$router.push(`/course/${course.node.id}`)"
-                    class="btn"
-                >
-                    Start Course
-                </button>
+
+                <div v-if="disableCourse">
+                    <button
+                        @click="$router.push(`/course/${course.node.id}`)"
+                        class="btn"
+
+                    >
+                        Start Course
+                    </button>
+                </div>
+
+                <div v-else>
+                     <button @click="logout"  class="btn "> Login to start course </button>
+                </div>
             </div>
         </div>
     </div>
@@ -55,10 +63,30 @@ export default {
             courses: [],
         };
     },
+    computed:{
+        disableCourse(){
+            if(this.$store.getters.authStatus === 'success'){
+                return true
+            } else if (this.$store.getters.authStatus === 'error'){
+                return false
+            }
+        }
+    },
     mounted() {
         this.courses = this.$static.allCourse.edges;
-        console.log('sfdfd', this.$static.allCourse.edges);
+
     },
+    methods:{
+        logout(){
+            this.$store.dispatch('logout')
+                .then(() => {
+                    this.$router.push('/login')
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+    }
 };
 </script>
 

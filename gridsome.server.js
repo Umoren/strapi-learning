@@ -31,11 +31,5 @@ module.exports = function (api) {
       }
     })
 
-    api.createPages(({createPage}) => {
-      createPage({
-        path: '/connect/github/redirect',
-        component: './src/components/LoginRedirect.vue'
-      })
-    })
 
 }

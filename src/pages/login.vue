@@ -1,7 +1,7 @@
 <template>
     <Layout>
         <form class="signup" onsubmit="return false" autocomplete="off">
-            <h1>Create account</h1>
+            <h1>Welcome Back</h1>
             <h2>Don't have an account? <g-link to="/signup">Sign up</g-link></h2>
             <div class="signup__field">
                 <input class="signup__input" type="text"  v-model="user.identifier" name="email"  required />
@@ -38,7 +38,10 @@ export default {
            this.$store.dispatch('login', {identifier, password})
 
            .then(() => this.$router.push('/home'))
-           .catch(err => console.log(err))
+           .catch((err) => {
+             this.$router.push('/')
+             console.error('something is here', err)
+            })
         }
     }
 }

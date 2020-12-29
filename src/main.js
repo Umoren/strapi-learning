@@ -9,7 +9,8 @@ export default function (Vue, { appOptions, router }) {
   Vue.use(Vuex)
 
   Vue.prototype.$http = axios;
-  const token = localStorage.getItem('token')
+
+  const token = process.isClient ? localStorage.getItem(`Bearer ${token}`) : false
 
   if (token) {
     Vue.prototype.$http.defaults.headers.common['Authorization'] = `Bearer ${token}`
@@ -32,7 +33,7 @@ export default function (Vue, { appOptions, router }) {
   appOptions.store = new Vuex.Store({
     state: {
       status: '',
-      token: localStorage.getItem('token') || '',
+      token: process.isClient ? localStorage.getItem('token') || '' : false,
       user: {}
     },
 
@@ -63,9 +64,10 @@ export default function (Vue, { appOptions, router }) {
             const token = response.data.jwt
             const user = response.data.user
 
-            localStorage.setItem('token', token)
-            localStorage.setItem('user', JSON.stringify(user))
-
+            if (process.isClient) {
+              localStorage.setItem('token', token)
+              localStorage.setItem('user', JSON.stringify(user))
+            }
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
             const something =  axios.defaults.headers.common['Authorization']
             console.log({something})
@@ -75,7 +77,7 @@ export default function (Vue, { appOptions, router }) {
 
           .catch(err => {
             commit('AUTH_ERROR')
-            localStorage.removeItem('token')
+            process.isClient ? localStorage.removeItem('token') : false
             console.error(err)
           })
       },
@@ -87,7 +89,7 @@ export default function (Vue, { appOptions, router }) {
             const token = response.data.jwt
             const user = response.data.user
 
-            localStorage.setItem('token', token)
+            process.isClient ? localStorage.setItem('token', token) : false
 
             axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
@@ -95,7 +97,7 @@ export default function (Vue, { appOptions, router }) {
           })
           .catch(err => {
             commit('AUTH_ERROR')
-            localStorage.removeItem('token')
+            process.isClient ? localStorage.removeItem('token') : false
             console.error(err)
           })
 
@@ -106,7 +108,7 @@ export default function (Vue, { appOptions, router }) {
             commit('LOGOUT')
             console.log('Logged out')
 
-		      	localStorage.removeItem('token')
+		      	process.isClient ? localStorage.removeItem('token') : false
 		      	delete axios.defaults.headers.common['Authorization']
 		      	resolve()
 		    })

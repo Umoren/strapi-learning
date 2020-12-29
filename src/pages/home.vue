@@ -13,5 +13,6 @@ export default {
     components: {
         AllCourses,
     },
+    meta: { auth: true }
 }
 </script>
