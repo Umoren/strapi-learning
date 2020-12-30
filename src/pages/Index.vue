@@ -2,7 +2,7 @@
     <Layout>
         <!-- Learn how to use images here: https://gridsome.org/docs/images -->
         <section class="hero-section">
-            <div v-if="!isLoggedIn">
+            <div v-if="!authStatus">
                 <h1>Welcome!</h1>
 
                 <p>
@@ -33,9 +33,15 @@ export default {
         title: 'Learning Platform',
     },
     computed:{
-        isLoggedIn(){
-            return this.$store.getters.isLoggedIn
-        },
+        authStatus(){
+            if(this.$store.getters.authStatus === 'success'){
+                return true
+            } else if (this.$store.getters.authStatus === 'error'){
+                return false
+            } else if (this.$store.getters.authStatus === ''){
+                return false
+            }
+        }
     }
 
 };
